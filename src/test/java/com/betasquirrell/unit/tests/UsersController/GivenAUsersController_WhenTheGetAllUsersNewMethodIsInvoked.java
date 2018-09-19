@@ -1,4 +1,4 @@
-package com.betasquirrell.unit.tests;
+package com.betasquirrell.unit.tests.UsersController;
 
 import com.betasquirrel.controller.UsersController;
 import com.betasquirrel.model.User;
@@ -13,10 +13,11 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
-class GivenAUsersController {
+class GivenAUsersController_WhenTheGetAllUsersNewMethodIsInvoked {
     private List<User> usersList;
     private List<User> actualUsers;
 
@@ -27,7 +28,7 @@ class GivenAUsersController {
     private UsersController usersController;
 
     @BeforeEach
-    public void WhenTheGetAllUsersNewMethodIsInvoked(){
+    public void Setup(){
         MockitoAnnotations.initMocks(this);
 
         JFixture fixture = new JFixture();
@@ -35,7 +36,7 @@ class GivenAUsersController {
 
         when(userRepository.findAll()).thenReturn(usersList);
 
-        actualUsers = usersController.getAllUserNew(TestHelper.response);
+        actualUsers = usersController.getAllUsersNew(TestHelper.response);
     }
 
     @Test
@@ -45,6 +46,6 @@ class GivenAUsersController {
 
     @Test
     void ThenTheCorrectListOfUsersIsReturned() {
-        assertSame(usersList, actualUsers);
+        assertThat(usersList, sameBeanAs(actualUsers));
     }
 }

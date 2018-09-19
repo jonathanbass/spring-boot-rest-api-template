@@ -39,7 +39,7 @@ public class UsersController {
     }
 
     @RequestMapping(path = "/new", method = RequestMethod.GET)
-    public List getAllUserNew(HttpServletResponse http) {
+    public List getAllUsersNew(HttpServletResponse http) {
         List<User> users = userRepository.findAll();
         return users;
     }

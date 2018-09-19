@@ -1,4 +1,8 @@
-package com.betasquirrell.unit.tests;
+package com.betasquirrell.unit.tests.UsersController;
+
+import com.betasquirrel.model.ListResponse;
+import com.betasquirrel.model.ObjectResponse;
+import com.betasquirrel.model.User;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
@@ -6,9 +10,26 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 
 public class TestHelper {
+    static ObjectResponse CreateResponseFromSingleUser(User responseData) {
+        ObjectResponse response = new ObjectResponse();
+        response.setMessage("Successfully Retrieved");
+        response.setStatusCode(200);
+        response.setData(responseData);
+        return response;
+    }
+
+    static ListResponse CreateResponseFromUsers(List<User> responseData) {
+        ListResponse response = new ListResponse();
+        response.setMessage("Successfully Retrieved");
+        response.setStatusCode(200);
+        response.setData(responseData);
+        return response;
+    }
+
     static HttpServletResponse response = new HttpServletResponse() {
         @Override
         public void addCookie(Cookie cookie) {
@@ -97,7 +118,7 @@ public class TestHelper {
 
         @Override
         public int getStatus() {
-            return 0;
+            return 200;
         }
 
         @Override
