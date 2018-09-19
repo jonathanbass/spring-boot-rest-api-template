@@ -14,9 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class GivenAUsersController {
     private List<User> usersList;
@@ -29,15 +27,11 @@ class GivenAUsersController {
     private UsersController usersController;
 
     @BeforeEach
-    public void WhenTheGetAllUsersMethodIsInvoked(){
+    public void WhenTheGetAllUsersNewMethodIsInvoked(){
         MockitoAnnotations.initMocks(this);
-        JFixture fixture = new JFixture();
-        User user1 = fixture.create(User.class);
-        User user2 = fixture.create(User.class);
 
-        usersList = new ArrayList<User>();
-        usersList.add(user1);
-        usersList.add(user2);
+        JFixture fixture = new JFixture();
+        usersList = (ArrayList)fixture.collections().createCollection(User.class);
 
         when(userRepository.findAll()).thenReturn(usersList);
 
