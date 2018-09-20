@@ -38,6 +38,12 @@ public class UsersController {
         return response;
     }
 
+    @RequestMapping(path = "/new", method = RequestMethod.GET)
+    public List getAllUsersNew(HttpServletResponse http) {
+        List<User> users = userRepository.findAll();
+        return users;
+    }
+
     /**
      * Create new user
      *
